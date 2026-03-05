@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # Container Utama (Laravel + React)
+  app:
+    image: bitnami/laravel:11
+    container_name: cp_app
+    ports:
+      - "8000:8000"
+      - "5173:5173"
+    volumes:
+      - ./:/app
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=${DB_USERNAME:-admin}
+      - DB_PASSWORD=${DB_PASSWORD:-secret123}
+      - DB_DATABASE=${DB_DATABASE:-company_profile_db}
+    depends_on:
+      - db
+    networks:
+      - cp_network
+
+  # Container Database (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: cp_db_pgsql
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-company_profile_db}
+      POSTGRES_USER: ${DB_USERNAME:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret123}
+    ports:
+      - "5432:5432"
+    volumes:
+      - cp_postgres_data:/var/lib/postgresql/data
+    networks:
+      - cp_network
+
+networks:
+  cp_network:
+    driver: bridge
+
+volumes:
+  cp_postgres_data:
