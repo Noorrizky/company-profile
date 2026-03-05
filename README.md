@@ -92,12 +92,12 @@ Pastikan Anda sudah menginstal:
 
 ## 🚀 Persiapan Deployment (Production)
 
-Jika Anda ingin mengunggah aplikasi ini ke hosting atau VPS, pastikan Anda menjalankan perintah build untuk mengoptimasi dan mengecilkan ukuran file Frontend:
-```bash
+    Jika Anda ingin mengunggah aplikasi ini ke hosting atau VPS, pastikan Anda menjalankan perintah build untuk mengoptimasi dan mengecilkan ukuran file Frontend:
+    ``bash
 
-npm run build```
+    npm run build``
 
-Pastikan juga file .env di server production Anda memiliki APP_ENV=production dan APP_DEBUG=false.
+    Pastikan juga file .env di server production Anda memiliki APP_ENV=production dan APP_DEBUG=false.
 
 ## 👨‍💻 Pengembang
 
