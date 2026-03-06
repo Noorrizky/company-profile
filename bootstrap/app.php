@@ -8,18 +8,19 @@ use Illuminate\Http\Request; // 2. Tambahkan import ini
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        
+
         // --- TAMBAHKAN BLOK INI ---
         // Menangkap error "Too Many Requests" dari middleware throttle
         $exceptions->render(function (ThrottleRequestsException $e, Request $request) {
@@ -35,4 +36,3 @@ return Application::configure(basePath: dirname(__DIR__))
         // --------------------------
 
     })->create();
-    
