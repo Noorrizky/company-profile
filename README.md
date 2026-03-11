@@ -70,12 +70,20 @@ Pastikan Anda sudah menginstal:
 
     php artisan storage:link```
 
-6. **Jalankan Migrasi Database:**
+6. **Edit file seeder untuk Login**
+   Edit "database/seeders/DatabaseSeeder.php".
+   Masukkan email dan password untuk login ke halaman dashboard admin.
+   Kemudian jalankan:
+    ``bash
+    php artisan db:seed
+   ``
+
+7. **Jalankan Migrasi Database:**
     ```bash
 
     php artisan migrate```
 
-7. **Jalankan Server (Buka 2 Terminal Berbeda):**
+8. **Jalankan Server (Buka 2 Terminal Berbeda):**
 
     Terminal 1 (Untuk menjalankan Vite & React):
     ```bash
@@ -87,7 +95,7 @@ Pastikan Anda sudah menginstal:
 
     php artisan serve```
 
-8. **Akses Aplikasi:**
+9. **Akses Aplikasi:**
     Buka http://localhost:8000 di browser Anda.
 
 ## 🚀 Persiapan Deployment (Production)
