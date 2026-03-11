@@ -14,10 +14,10 @@ class StoreContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'subject' => ['required', 'string', 'max:255'],
-            'message' => ['required', 'string', 'min:10'],
+            'name'    => ['required', 'string', 'max:100'],
+            'email'   => ['required', 'email:rfc,dns', 'max:150'], // rfc,dns lebih ketat
+            'subject' => ['required', 'string', 'max:200'],
+            'message' => ['required', 'string', 'min:10', 'max:2000'], // Tambah max!
         ];
     }
 
@@ -31,6 +31,7 @@ class StoreContactRequest extends FormRequest
             'subject.required' => 'Subjek wajib diisi.',
             'message.required' => 'Pesan wajib diisi.',
             'message.min' => 'Pesan minimal berisi 10 karakter.',
+            'message.max' => 'Pesan maksimal berisi 2000 karakter.',
         ];
     }
 }
